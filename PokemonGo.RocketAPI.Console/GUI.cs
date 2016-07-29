@@ -1,4 +1,4 @@
-﻿using PokemonGo.RocketAPI.GeneratedCode;
+using PokemonGo.RocketAPI.GeneratedCode;
 using PokemonGo.RocketAPI.Logic.Utils;
 using System;
 using System.Collections.Generic;
@@ -176,6 +176,9 @@ namespace PokemonGo.RocketAPI.Console
                             break;
                         case 22:
                             checkBox10.Checked = bool.Parse(line);
+                            break;
+                        case 23:
+                            checkBox11.Checked = bool.Parse(line);
                             break;
                         default:
                             TextBox temp = (TextBox)this.Controls.Find("textBox" + tb, true).FirstOrDefault();
@@ -552,7 +555,8 @@ namespace PokemonGo.RocketAPI.Console
                     Globals.gerNames.ToString(),
                     Globals.useincense.ToString(),
                     Globals.ivmaxpercent.ToString(),
-                    Globals.pokeList.ToString()
+                    Globals.pokeList.ToString(),
+                    Globals.keepPokemonsThatCanEvolve.ToString()
             };
             System.IO.File.WriteAllLines(@Program.account, accFile);
 
@@ -767,5 +771,17 @@ namespace PokemonGo.RocketAPI.Console
             textBox4.Text = Globals.longitude.ToString();
             textBox5.Text = Globals.altitude.ToString();
         }
+
+        private void checkBox11_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox11.Checked)
+            {
+                Globals.keepPokemonsThatCanEvolve = true;
+            }
+            else
+            {
+                Globals.keepPokemonsThatCanEvolve = false;
+            }
+        } 
     }
 }
